@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TurnUpPortal.Utilities;
+using NUnit.Framework;
 
 namespace TurnUpPortal.Pages
 {
@@ -19,12 +20,17 @@ namespace TurnUpPortal.Pages
             driver.Manage().Window.Maximize();
             Thread.Sleep(1000);
 
-            
-            //Identify username textbox and enter valid username
-            IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-            usernameTextbox.SendKeys("hari");
-
-            Wait.WaitToBeVisible(driver,"Id","Password",7);
+            try
+            {
+                //Identify username textbox and enter valid username
+                IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
+                usernameTextbox.SendKeys("hari");
+            }
+            catch(Exception ex)
+            {
+                Assert.Fail("Username textbox not found.");
+            }
+            //Wait.WaitToBeVisible(driver,"Id","Password",7);
 
             //Identify password textbox and enter valid password
 

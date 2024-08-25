@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,18 @@ namespace TurnUpPortal.Pages
     {
         public void CreateTimeRecord(IWebDriver driver)
         {
+            try
+            {
+                IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
+                createNewButton.Click();
+            }
+            catch(Exception ex)
+            {
+                Assert.Fail("Create New button is not found");
+            }
             //Click on Create new button
-            IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
-            createNewButton.Click();
+            
+            
             //Select Time from dropdown
             IWebElement typeCodeDropdown = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[2]/span"));
             typeCodeDropdown.Click();
@@ -49,14 +59,18 @@ namespace TurnUpPortal.Pages
             goToLastPageButton.Click();
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-            if (newCode.Text == "TA Programme")
-            {
-                Console.WriteLine("Time record created successfully!");
-            }
-            else
-            {
-                Console.WriteLine("New time has not been created!");
-            }
+
+
+            Assert.That(newCode.Text == "TA Programme"," New time has not been created!");
+
+            //if (newCode.Text == "TA Programme")
+            //{
+            //    Assert.Pass("Time record created successfully!");
+            //}
+            //else
+            //{
+            //    Assert.Fail("New time has not been created!");
+            //}
         }
         public void EditTimeRecord(IWebDriver driver) 
         {
@@ -97,6 +111,9 @@ namespace TurnUpPortal.Pages
             Thread.Sleep(1000);
 
             IWebElement editCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            
+            
+            
             if (editCode.Text == "New TA Programme")
             {
                 Console.WriteLine("Time record edited successfully!");

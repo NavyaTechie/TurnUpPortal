@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TurnUpPortal.Pages;
 using TurnUpPortal.Utilities;
+using System.Text.RegularExpressions;
 
 namespace TurnUpPortal.Tests
 {
     [TestFixture]
     public class TM_Tests : CommonDriver
     {
+       
+
         [SetUp]
         public void SetUpSteps()
         {
@@ -33,8 +36,8 @@ namespace TurnUpPortal.Tests
             //TM page object initialization and definition
             TMPage tMPageObj = new TMPage();
             tMPageObj.CreateTimeRecord(driver);
-
-                      
+           
+            
         }
         [Test]
         public void EditTime_Test()

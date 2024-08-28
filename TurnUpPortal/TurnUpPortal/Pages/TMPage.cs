@@ -11,6 +11,7 @@ namespace TurnUpPortal.Pages
 {
     public class TMPage
     {
+        
         public void CreateTimeRecord(IWebDriver driver)
         {
             try
@@ -22,10 +23,7 @@ namespace TurnUpPortal.Pages
             {
                 Assert.Fail("Create New button is not found");
             }
-            //Click on Create new button
             
-            
-            //Select Time from dropdown
             IWebElement typeCodeDropdown = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[2]/span"));
             typeCodeDropdown.Click();
 
@@ -63,6 +61,7 @@ namespace TurnUpPortal.Pages
 
             Assert.That(newCode.Text == "TA Programme"," New time has not been created!");
 
+            
             //if (newCode.Text == "TA Programme")
             //{
             //    Assert.Pass("Time record created successfully!");

@@ -16,7 +16,6 @@ namespace TurnUpPortal.Tests
     public class TM_Tests : CommonDriver
     {
        
-
         [SetUp]
         public void SetUpSteps()
         {
@@ -44,7 +43,7 @@ namespace TurnUpPortal.Tests
         {
             // Edit Time Record
             TMPage tMPageObj = new TMPage();
-            tMPageObj.EditTimeRecord(driver);
+            tMPageObj.EditTimeRecord(driver,"","");
 
         }
         [Test]
